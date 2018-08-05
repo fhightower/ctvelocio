@@ -97,6 +97,8 @@ def print_help():
 
 def raw_to_instruction(raw):
     raw_str = ''.join(raw)
+    # remove all instances of '\x' in the hex string
+    raw_str = re.sub('[\\\\x ]', '', raw_str)
     number_range = '\\[([0-9a-fA-F]{2})[,\\-]([0-9a-fA-F]{2})\\]'
     matches = re.search(number_range, raw_str)
     if matches:
